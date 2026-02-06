@@ -24,6 +24,11 @@ KbdInteractiveAuthentication no
 ChallengeResponseAuthentication no
 LogLevel VERBOSE
 PermitRootLogin no
+PermitTTY no
+PrintMotd no
+PrintLastLog no
+X11Forwarding no
+AllowTcpForwarding no
 PubkeyAuthentication yes
 AuthorizedKeysFile /home/git/.ssh/authorized_keys
 AllowUsers git
