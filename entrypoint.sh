@@ -16,13 +16,15 @@ fi
 
 # 3) Basic sshd config hardening for a git-only account
 # (keeps image simple: edit inline each start)
+# Add 
+# LogLevel VERBOSE
+# for debug
 cat > /etc/ssh/sshd_config <<'EOF'
 Port 22
 Protocol 2
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 ChallengeResponseAuthentication no
-LogLevel VERBOSE
 PermitRootLogin no
 PermitTTY no
 PrintMotd no
@@ -36,8 +38,8 @@ Subsystem sftp internal-sftp
 EOF
 
 # Start sshd (daemonizes by default on Alpine when not using -D)
-# Added -D -e for debug
-/usr/sbin/sshd -D -e
+# Add -D -e for debug/log
+/usr/sbin/sshd
 
 # 4) Start svnserve in foreground (this is the main container process)
 exec /usr/bin/svnserve --daemon --foreground --root /var/opt/svn
