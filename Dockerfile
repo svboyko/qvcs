@@ -3,8 +3,9 @@
 FROM garethflowers/svn-server:latest
 
 # Add only what we need for Git over SSH
-RUN apk add --no-cache git openssh && \
+RUN apk add --no-cache git openssh shadow && \
     adduser -D -h /home/git -s /usr/bin/git-shell git && \
+    usermod -p '*' git && \
     mkdir -p /var/opt/git /home/git/.ssh && \
     chown -R git:git /var/opt/git /home/git && \
     chmod 700 /home/git/.ssh
